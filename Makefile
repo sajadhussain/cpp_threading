@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-Wall -Wextra -std=c++17 -pthread -g -Og
+CXXFLAGS=-Wall -Wextra -std=c++17 -pthread -g -Og -I$(shell pwd)/include
 LDFLAGS=
 
 export CXX

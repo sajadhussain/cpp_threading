@@ -1,5 +1,3 @@
-CXXFLAGS+=-I../include/
-
 ./sem.o: ./sem.cpp ../include/sem.h
 
 .PHONY: clean
