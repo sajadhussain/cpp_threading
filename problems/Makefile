@@ -1,5 +1,7 @@
 .PHONY: all
-all: ./phil ./prod_cons
+all: ./phil ./prod_cons ./smokers
+
+./smokers: ./smokers.cpp ../sem/sem.o ../include/sem.h
 
 ./phil: CXXFLAGS+=-DSOLN_RIGHTIE
 ./phil: ./phil.cpp ../sem/sem.o ../include/sem.h
@@ -8,4 +10,4 @@ all: ./phil ./prod_cons
 
 .PHONY: clean
 clean:
-	rm -f ./phil ./prod_cons
+	rm -f ./phil ./prod_cons ./smokers
