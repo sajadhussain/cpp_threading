@@ -38,16 +38,14 @@ private:
     std::condition_variable notempty;
 
     const std::size_t size;
-    std::size_t head;
-    std::size_t tail;
+    std::size_t head = 0;
+    std::size_t tail = 0;
     std::vector<T> vec;
 };
 
 template <class T>
 Queue<T>::Queue() :
     size(100),
-    head(0),
-    tail(0),
     vec(size)
 {
 }
@@ -55,8 +53,6 @@ Queue<T>::Queue() :
 template <class T>
 Queue<T>::Queue(std::size_t size) :
     size(size),
-    head(0),
-    tail(0),
     vec(size)
 {
 }

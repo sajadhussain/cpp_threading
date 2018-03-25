@@ -3,8 +3,7 @@
 #include <mutex>
 
 Semaphore::Semaphore(int val) :
-    value(val),
-    wakeups(0)
+    value(val)
 {
 }
 

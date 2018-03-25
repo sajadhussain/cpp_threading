@@ -14,7 +14,7 @@ private:
     std::mutex mutex;
     std::condition_variable cond;
     int value;
-    int wakeups;
+    int wakeups = 0;
 };
 
 #endif
