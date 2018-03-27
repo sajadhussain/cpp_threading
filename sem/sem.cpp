@@ -16,6 +16,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/* Parts of the code is adapted from the example semaphore implementation
+ * provided in The Little Book of Semaphores.
+ */
+
 #include "sem.h"
 
 #include <mutex>
@@ -34,6 +38,18 @@ void Semaphore::wait()
             cond.wait(lock);
         } while (wakeups < 1);
         --wakeups;
+    }
+}
+
+bool Semaphore::trywait()
+{
+    std::unique_lock<std::mutex> lock(mutex);
+
+    if (value > 0) {
+        --value;
+        return true;
+    } else {
+        return false;
     }
 }
 

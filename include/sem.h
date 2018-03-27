@@ -26,6 +26,11 @@ class Semaphore {
 public:
     Semaphore(int val);
     void wait();
+    /* Try to decrement,
+     * return true on success,
+     * return false on failure
+     */
+    bool trywait();
     void signal();
 
 private:
