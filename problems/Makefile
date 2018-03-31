@@ -1,5 +1,7 @@
 .PHONY: all
-all: ./phil ./prod_cons ./smokers
+all: ./phil ./prod_cons ./smokers ./savages
+
+./savages: ./savages.cpp ../sem/sem.o ../include/sem.h
 
 ./smokers: ./smokers.cpp ../sem/sem.o ../include/sem.h
 
@@ -10,4 +12,4 @@ all: ./phil ./prod_cons ./smokers
 
 .PHONY: clean
 clean:
-	rm -f ./phil ./prod_cons ./smokers
+	rm -f ./phil ./prod_cons ./smokers ./savages
