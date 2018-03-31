@@ -32,7 +32,7 @@ auto pot_empty = Semaphore(0);
 auto servings_mutex = Semaphore(1);
 int servings = 0;
 
-void savage()
+void savage(int id)
 {
     for (;;) {
         servings_mutex.wait();
@@ -45,6 +45,7 @@ void savage()
         }
         /* Pot is not empty, get servings and eat.
          */
+        std::cout << "savage(" << id << ") gets servings\n";
         --servings;
         servings_mutex.signal();
     }
@@ -55,6 +56,7 @@ void cook()
     for (;;) {
         pot_empty.wait();
         /* Pot is empty, put servings */
+        std::cout << "cook() puts servings\n";
         servings = pot_capacity;
         pot_full.signal();
     }
@@ -65,8 +67,8 @@ int main()
     std::thread cook_thread(cook);
     std::vector<std::thread> savage_threads;
 
-    for (int i = 0; i < savages; ++i) {
-        savage_threads.emplace_back(savage);
+    for (auto i = 0; i < savages; ++i) {
+        savage_threads.emplace_back(savage, i);
     }
 
     cook_thread.join();
